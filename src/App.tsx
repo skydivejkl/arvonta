@@ -170,9 +170,19 @@ class App extends React.Component<any, any> {
 
                 <Button onClick={this.submit}>Osallistu!</Button>
 
-                <g.A href="#" onClick={download} marginTop={500}>
-                    Lataa vastaukset
-                </g.A>
+                <g.Div marginTop={500}>
+                    <Desc>
+                        Tää on ns.{" "}
+                        <a href="https://developers.google.com/web/progressive-web-apps/">
+                            PWA
+                        </a>{" "}
+                        eli ei tartte verkkoyhteyttä toimiakseen eikä tallenna
+                        verkkoon yhtään mitään. Kaikki tallentuu sun koneelle.
+                    </Desc>
+                    <g.A href="#" onClick={download}>
+                        Lataa vastaukset
+                    </g.A>
+                </g.Div>
             </Content>
         );
     }
