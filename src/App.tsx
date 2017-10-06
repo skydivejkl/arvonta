@@ -150,7 +150,7 @@ class App extends React.Component<any, any> {
     };
 
     injectAtSigns = e => {
-        const modifier = e.altKey || e.shiftKey || e.ctrlKey;
+        const modifier = e.altKey || e.shiftKey || e.ctrlKey || e.metaKey;
         const key = e.key === "2" || e.key === '"';
         if (modifier && key) {
             e.preventDefault();
