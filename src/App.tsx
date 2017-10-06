@@ -55,7 +55,7 @@ const Input: any = g.input({
     fontSize: 20,
     padding: 10,
     marginBottom: 20,
-    width: 250,
+    width: "100%",
     boxSizing: "border-box",
 });
 
