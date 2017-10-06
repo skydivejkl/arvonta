@@ -148,6 +148,19 @@ class App extends React.Component<any, any> {
         }
     };
 
+    injectAtSigns = e => {
+        const modifier = e.altKey || e.shiftKey || e.ctrlKey;
+        const key = e.key === "2" || e.key === '"';
+        if (modifier && key) {
+            e.preventDefault();
+            this.setFromInput("email", {
+                target: {
+                    value: this.state.values.email + "@",
+                },
+            });
+        }
+    };
+
     render() {
         const url = window.location.toString();
         return (
@@ -192,13 +205,14 @@ class App extends React.Component<any, any> {
                 <Label>Sähköposti</Label>
                 <Input
                     value={this.state.values.email || ""}
+                    onKeyDown={this.injectAtSigns}
                     onChange={this.setFromInput.bind(this, "email")}
                 />
 
                 <Label>Puhelin</Label>
                 <Input
                     value={this.state.values.phone || ""}
-                    onKeyUp={this.submitOnEnter}
+                    onKeyDown={this.submitOnEnter}
                     onChange={this.setFromInput.bind(this, "phone")}
                 />
 
