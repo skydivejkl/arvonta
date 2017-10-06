@@ -118,7 +118,7 @@ class App extends React.Component<any, any> {
         this.state = {values: {}};
     }
 
-    setFromInput = (name, e) => {
+    setFormValue = (name, e) => {
         this.setState({
             values: {
                 ...this.state.values,
@@ -154,7 +154,7 @@ class App extends React.Component<any, any> {
         const key = e.key === "2" || e.key === '"';
         if (modifier && key) {
             e.preventDefault();
-            this.setFromInput("email", {
+            this.setFormValue("email", {
                 target: {
                     value: (this.state.values.email || "") + "@",
                 },
@@ -200,21 +200,21 @@ class App extends React.Component<any, any> {
                 <Label>Nimi</Label>
                 <Input
                     value={this.state.values.name || ""}
-                    onChange={this.setFromInput.bind(this, "name")}
+                    onChange={this.setFormValue.bind(this, "name")}
                 />
 
                 <Label>Sähköposti</Label>
                 <Input
                     value={this.state.values.email || ""}
                     onKeyDown={this.injectAtSigns}
-                    onChange={this.setFromInput.bind(this, "email")}
+                    onChange={this.setFormValue.bind(this, "email")}
                 />
 
                 <Label>Puhelin</Label>
                 <Input
                     value={this.state.values.phone || ""}
                     onKeyDown={this.submitOnEnter}
-                    onChange={this.setFromInput.bind(this, "phone")}
+                    onChange={this.setFormValue.bind(this, "phone")}
                 />
 
                 <Button onClick={this.submit}>
