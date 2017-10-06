@@ -130,11 +130,25 @@ class App extends React.Component<any, any> {
     };
 
     render() {
+        const url = window.location.toString();
         return (
             <Content>
                 <Logo />
 
                 <Title>Hyppykurssiarvonta!</Title>
+
+                {!/standi/.test(url) && (
+                    <Desc>
+                        <g.Span color="red">
+                            HUOM! Tämä lomake ei toimi verkossa. Tule kerhon
+                            standille osallistumaan!{" "}
+                            <a href={url + "?standi"}>Ok (tai olen standi).</a>
+                        </g.Span>
+                        <p>
+                            <a href="#info">Että mitä?</a>
+                        </p>
+                    </Desc>
+                )}
 
                 <Desc>
                     Voita alkeiskurssin lahjakortti! Lahjakortti oikeuttaa
@@ -144,7 +158,7 @@ class App extends React.Component<any, any> {
 
                 <Desc>
                     Arvonta suoritetaan huomenna sunnuntaina 8.10.2017. Arvonnan
-                    voittaneelle ilmoitetaan sähköpostitse sekä puhelimitse.
+                    voittaneelle ilmoitetaan sähköpostitse sekä tekstiviestitse.
                     Mikäli voittanut henkilö ei vastaa 48 tunnin kuluessa
                     arvonta suoritetaan uuudestaan.
                 </Desc>
@@ -169,7 +183,7 @@ class App extends React.Component<any, any> {
 
                 <Button onClick={this.submit}>Osallistu!</Button>
 
-                <g.Div marginTop={500}>
+                <g.Div marginTop={500} id="info">
                     <Desc>
                         Tää on ns.{" "}
                         <a href="https://developers.google.com/web/progressive-web-apps/">
