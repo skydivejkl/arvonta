@@ -137,7 +137,7 @@ class App extends React.Component<any, any> {
 
         await idb.set("responses", responses);
         this.setState({values: {}});
-        alert("Kiitos osallistumisestasi, onnea arvontaan!");
+        setTimeout( function ( ) { alert("Kiitos osallistumisestasi, onnea arvontaan!"); }, 5000 );        
     };
 
     render() {
