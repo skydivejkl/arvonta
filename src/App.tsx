@@ -74,6 +74,33 @@ const Desc = g.p({
     textAlign: "justify",
 });
 
+const getResponses = async () => idb.get<Array<any> | null>("responses");
+
+const download = async e => {
+    e.preventDefault();
+    const responses: Array<any> = (await getResponses()) || [];
+
+    const text = responses
+        .map(res => `${res.date}	${res.name}	${res.email}	${res.phone}`)
+        .join("\n");
+
+    var pom = document.createElement("a");
+
+    pom.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," + encodeURIComponent(text),
+    );
+    pom.setAttribute("download", "vastaukset.tsv");
+
+    if (document.createEvent) {
+        var event = document.createEvent("MouseEvents");
+        event.initEvent("click", true, true);
+        pom.dispatchEvent(event);
+    } else {
+        pom.click();
+    }
+};
+
 class App extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
@@ -91,13 +118,14 @@ class App extends React.Component<any, any> {
 
     submit = async e => {
         e.preventDefault();
-        const current: Array<any> = (await idb.get<any>("responses")) || [];
-        current.push({
-            date: new Date(),
+        const responses: Array<any> = (await getResponses()) || [];
+
+        responses.push({
+            date: new Date().toISOString(),
             ...this.state.values,
         });
 
-        await idb.set("responses", current);
+        await idb.set("responses", responses);
         this.setState({values: {}});
         alert("kiitos");
     };
@@ -141,6 +169,10 @@ class App extends React.Component<any, any> {
                 />
 
                 <Button onClick={this.submit}>Osallistu!</Button>
+
+                <g.A href="#" onClick={download} marginTop={500}>
+                    Lataa vastaukset
+                </g.A>
             </Content>
         );
     }
