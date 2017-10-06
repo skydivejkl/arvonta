@@ -206,6 +206,7 @@ class App extends React.Component<any, any> {
                 <Label>Sähköposti</Label>
                 <Input
                     value={this.state.values.email || ""}
+                    type="email"
                     onKeyDown={this.injectAtSigns}
                     onChange={this.setFormValue.bind(this, "email")}
                 />
