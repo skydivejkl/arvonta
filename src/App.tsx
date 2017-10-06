@@ -171,7 +171,8 @@ class App extends React.Component<any, any> {
                     Arvonta suoritetaan huomenna sunnuntaina 8.10.2017. Arvonnan
                     voittaneelle ilmoitetaan sähköpostitse sekä tekstiviestitse.
                     Mikäli voittanut henkilö ei vastaa 48 tunnin kuluessa
-                    arvonta suoritetaan uuudestaan.
+                    arvonta suoritetaan uuudestaan. Voittajan nimi julkaistaan
+                    myös Facebookissa.
                 </Desc>
 
                 <Label>Nimi</Label>
