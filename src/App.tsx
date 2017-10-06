@@ -179,7 +179,7 @@ class App extends React.Component<any, any> {
                         verkkoon yhtään mitään. Kaikki tallentuu sun koneelle.
                     </Desc>
                     <g.A href="#" onClick={download}>
-                        Lataa vastaukset
+                        Lataa vastaukset.tsv
                     </g.A>
                 </g.Div>
             </Content>
