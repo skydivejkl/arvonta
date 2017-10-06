@@ -57,6 +57,9 @@ const Input: any = g.input({
     marginBottom: 20,
     width: "100%",
     boxSizing: "border-box",
+    border: "1px solid gray",
+    backgroundColor: "#f3f3f3",
+    textAlign: "center",
 });
 
 const Button: any = g.button({
