@@ -60,8 +60,9 @@ const Input: any = g.input({
 });
 
 const Button: any = g.button({
+    textAlign: "center",
     fontSize: 20,
-    padding: 10,
+    padding: 20,
     marginBottom: 20,
     backgroundColor: "black",
     color: "white",
@@ -216,7 +217,13 @@ class App extends React.Component<any, any> {
                     onChange={this.setFromInput.bind(this, "phone")}
                 />
 
-                <Button onClick={this.submit}>Osallistu!</Button>
+                <Button onClick={this.submit}>
+                    Osallistu!
+                    <br />
+                    <g.Span fontSize="60%" top={-5}>
+                        (Enter)
+                    </g.Span>
+                </Button>
 
                 <g.Div marginTop="50vh" marginBottom="50vh" id="info">
                     <Desc>
