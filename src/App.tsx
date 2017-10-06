@@ -71,7 +71,7 @@ const Button: any = g.button({
 });
 
 const Title = g(Flex)({
-    fontSize: 35,
+    fontSize: 60,
     margin: 20,
     fontWeight: "bold",
 });
