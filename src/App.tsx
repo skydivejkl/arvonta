@@ -139,7 +139,7 @@ class App extends React.Component<any, any> {
 
         await idb.set("responses", responses);
         this.setState({values: {}});
-        alert("Kiitos osallistumisestasi, onnea arvontaan!");      
+        alert("Kiitos osallistumisestasi, onnea arvontaan!");
     };
 
     submitOnEnter = e => {
@@ -155,7 +155,7 @@ class App extends React.Component<any, any> {
             e.preventDefault();
             this.setFromInput("email", {
                 target: {
-                    value: this.state.values.email + "@",
+                    value: (this.state.values.email || "") + "@",
                 },
             });
         }
