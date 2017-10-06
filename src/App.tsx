@@ -127,7 +127,9 @@ class App extends React.Component<any, any> {
     };
 
     submit = async e => {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         const responses: Array<any> = (await getResponses()) || [];
 
         responses.push({
@@ -138,6 +140,12 @@ class App extends React.Component<any, any> {
         await idb.set("responses", responses);
         this.setState({values: {}});
         alert("Kiitos osallistumisestasi, onnea arvontaan!");      
+    };
+
+    submitOnEnter = e => {
+        if (e.key === "Enter") {
+            this.submit(e);
+        }
     };
 
     render() {
@@ -190,6 +198,7 @@ class App extends React.Component<any, any> {
                 <Label>Puhelin</Label>
                 <Input
                     value={this.state.values.phone || ""}
+                    onKeyUp={this.submitOnEnter}
                     onChange={this.setFromInput.bind(this, "phone")}
                 />
 
