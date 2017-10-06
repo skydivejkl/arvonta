@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./App.css";
 import g from "glamorous";
 import {css} from "glamor";
 import * as idb from "idb-keyval";
