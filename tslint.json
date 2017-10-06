@@ -41,7 +41,6 @@
             "check-whitespace"
         ],
         "radix": true,
-        "semicolon": [true, "always"],
         "switch-default": true,
         "trailing-comma": false,
         "triple-equals": [true, "allow-null-check"],

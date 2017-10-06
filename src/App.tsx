@@ -2,6 +2,7 @@ import * as React from "react";
 import "./App.css";
 import g from "glamorous";
 import {css} from "glamor";
+import * as idb from "idb-keyval";
 
 css.global("*", {
     fontFamily: "Helvetica",
@@ -76,8 +77,30 @@ const Desc = g.p({
 class App extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
-        this.state = {};
+        this.state = {values: {}};
     }
+
+    setFromInput = (name, e) => {
+        this.setState({
+            values: {
+                ...this.state.values,
+                [name]: e.target.value,
+            },
+        });
+    };
+
+    submit = async e => {
+        e.preventDefault();
+        const current: Array<any> = (await idb.get<any>("responses")) || [];
+        current.push({
+            date: new Date(),
+            ...this.state.values,
+        });
+
+        await idb.set("responses", current);
+        this.setState({values: {}});
+        alert("kiitos");
+    };
 
     render() {
         return (
@@ -101,25 +124,23 @@ class App extends React.Component<any, any> {
 
                 <Label>Nimi</Label>
                 <Input
-                    value={this.state.name || ""}
-                    onChange={(e: any) => this.setState({name: e.target.value})}
+                    value={this.state.values.name || ""}
+                    onChange={this.setFromInput.bind(this, "name")}
                 />
 
                 <Label>Sähköposti</Label>
                 <Input
-                    value={this.state.email || ""}
-                    onChange={(e: any) =>
-                        this.setState({email: e.target.value})}
+                    value={this.state.values.email || ""}
+                    onChange={this.setFromInput.bind(this, "email")}
                 />
 
                 <Label>Puhelin</Label>
                 <Input
-                    value={this.state.phone || ""}
-                    onChange={(e: any) =>
-                        this.setState({phone: e.target.value})}
+                    value={this.state.values.phone || ""}
+                    onChange={this.setFromInput.bind(this, "phone")}
                 />
 
-                <Button>Osallistu!</Button>
+                <Button onClick={this.submit}>Osallistu!</Button>
             </Content>
         );
     }
