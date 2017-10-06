@@ -7,8 +7,19 @@ css.global("*", {
     fontFamily: "Helvetica",
 });
 
+css.global("body,html", {
+    padding: 0,
+    margin: 0,
+});
+
 const Flex = g.div({
     display: "flex",
+});
+
+const A = g.a({
+    ":visited": {
+        color: "blue",
+    },
 });
 
 const Container = g(Flex)({
@@ -142,10 +153,10 @@ class App extends React.Component<any, any> {
                         <g.Span color="red">
                             HUOM! Tämä lomake ei toimi verkossa. Tule kerhon
                             standille osallistumaan!{" "}
-                            <a href={url + "?standi"}>Ok (tai olen standi).</a>
+                            <A href={url + "?standi"}>Ok (tai olen standi).</A>
                         </g.Span>
                         <p>
-                            <a href="#info">Että mitä?</a>
+                            <A href="#info">Että mitä?</A>
                         </p>
                     </Desc>
                 )}
@@ -183,18 +194,19 @@ class App extends React.Component<any, any> {
 
                 <Button onClick={this.submit}>Osallistu!</Button>
 
-                <g.Div marginTop={500} id="info">
+                <g.Div marginTop="50vh" marginBottom="50vh" id="info">
                     <Desc>
                         Tää on ns.{" "}
-                        <a href="https://developers.google.com/web/progressive-web-apps/">
+                        <A href="https://developers.google.com/web/progressive-web-apps/">
                             PWA
-                        </a>{" "}
+                        </A>{" "}
                         eli ei tartte verkkoyhteyttä toimiakseen eikä tallenna
                         verkkoon yhtään mitään. Kaikki tallentuu sun koneelle.
                     </Desc>
-                    <g.A href="#" onClick={download}>
-                        Lataa vastaukset.tsv
-                    </g.A>
+                    Lataa{" "}
+                    <A href="#" onClick={download}>
+                        vastaukset.tsv
+                    </A>
                 </g.Div>
             </Content>
         );
